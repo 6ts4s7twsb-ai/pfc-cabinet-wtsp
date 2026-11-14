@@ -1,0 +1,16 @@
+{
+  "name": "pfc-cabinet",
+  "owner": {
+    "name": "Hamza Hazim"
+  },
+  "plugins": [
+    {
+      "name": "pfc-cabinet",
+      "source": "./",
+      "description": "Factures WhatsApp → application PFC (à valider)"
+    }
+  ],
+  "metadata": {
+    "description": "Plugins Claude du cabinet PFC du Nord (factures WhatsApp → application PFC)."
+  }
+}

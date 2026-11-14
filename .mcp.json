@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "chrome": {
+      "command": "npx",
+      "args": [
+        "-y", "chrome-devtools-mcp@1.12.0",
+        "--userDataDir", "${HOME}/.pfc-whatsapp/chrome",
+        "--workspace", "${HOME}/Downloads",
+        "--workspace", "${HOME}/PFC-WhatsApp"
+      ]
+    }
+  }
+}
