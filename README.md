@@ -17,7 +17,7 @@ Il faut : un Mac, Google Chrome, l'application Claude (onglet **Code**) ou Claud
 1. Ouvrez l'application **Terminal** (⌘ + Espace, tapez `Terminal`, Entrée).
 2. Copiez cette ligne, collez-la dans le Terminal, appuyez sur Entrée :
    ```
-   claude plugin marketplace add 6ts4s7twsb-ai/pfc-cabinet
+   claude plugin marketplace add 6ts4s7twsb-ai/pfc-cabinet-wtsp
    ```
 3. Puis celle-ci :
    ```
