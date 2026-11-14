@@ -1,6 +1,8 @@
 {
   "name": "pfc-cabinet",
-  "version": "1.0.0",
-  "description": "Cabinet PFC du Nord : récupère les factures reçues sur WhatsApp Web (Chrome) et les ajoute dans l'application PFC, à valider.",
-  "author": { "name": "Hamza Hazim" }
+  "version": "1.1.0",
+  "description": "Cabinet PFC du Nord : récupère les factures reçues sur WhatsApp Web (Chrome), les ajoute dans l'application PFC et vérifie leur lecture ; contrôle quotidien de l'application.",
+  "author": {
+    "name": "Hamza Hazim"
+  }
 }

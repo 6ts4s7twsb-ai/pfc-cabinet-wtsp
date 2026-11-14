@@ -21,9 +21,11 @@ réservée à ce travail (profil `~/.pfc-whatsapp/chrome`), qui garde la connexi
    (pas de .zip, .exe, .doc, audio, vidéo).
 4. **Mots de passe et QR code : jamais toi.** La personne scanne le QR code de WhatsApp et se connecte elle-même à
    l'application. Tu attends qu'elle dise « c'est fait ».
-5. **Avant de télécharger, demande l'accord** (sauf en mode automatique, voir § 7) : montre la liste des fichiers trouvés
+5. **Avant de télécharger, demande l'accord** (sauf en mode automatique, voir § 8) : montre la liste des fichiers trouvés
    et attends « oui ».
 6. Tu ne valides jamais une facture dans l'application. Tu l'ajoutes seulement ; une personne vérifie et approuve.
+   Dans « À valider », ne clique **jamais** sur Approuver, Modifier, Modifier la préparation, Rejeter ou Supprimer :
+   tu lis seulement.
 
 ## 1. Lire la configuration
 
@@ -101,19 +103,48 @@ Pour chaque discussion (10 fichiers maximum à la fois) :
    - autre erreur → note le texte exact.
 6. Si le numéro est « numéro inconnu », ne l'invente pas : demande-le à la personne avant l'étape 4.
 
-## 7. Mode automatique (tâche planifiée)
+## 7. Vérifier la lecture (lecture seule)
+
+Une fois les pièces ajoutées, contrôle ce que l'application a lu. **Tu ne corriges rien** : tu signales.
+Clics permis : ouvrir une tâche, « Vérifier » ou « Voir » (ils ne font qu'afficher), « Fermer ». Rien d'autre.
+
+1. **Attendre la lecture.** Claude lit chaque pièce en 20 à 60 s. Attends 30 s après l'ajout.
+2. **Trouver les pièces.** `navigate_page` sur `<adresse_app>/taches`, `take_snapshot`. Ouvre la tâche du client
+   concerné (nom du client, ou « Client non identifié ») qui porte l'étiquette « À approuver ». Dans le tableau des
+   documents, chaque pièce a un bouton **Vérifier** ; le nom du fichier permet de retrouver celles de ce passage.
+   Si une pièce n'apparaît pas encore, refais `take_snapshot` toutes les 15 s, **2 minutes au plus**, puis note-la
+   « pas encore lue ».
+3. **Lire ce que l'application a compris.** Clique **Vérifier**, puis `take_snapshot`. Relève dans « Ce que l'agent a
+   lu » : fournisseur, ICE, numéro, date, HT, TVA et taux, TTC, client du cabinet ; et dans « Contrôles faits par le
+   code », chaque ligne « Bloquant » ou « À vérifier » avec son texte. Clique **Fermer**.
+4. **Lire la facture elle-même.** Outil **Read** sur le chemin complet du fichier téléchargé (PDF ou photo). Relève
+   les mêmes champs.
+5. **Comparer.** Un écart = un montant qui diffère de plus de 0,01 DH, un ICE ou un numéro différent, une date
+   différente, ou un fournisseur manifestement différent (pas une simple abréviation). « Non trouvé sur le document »
+   alors que la valeur est lisible sur la facture compte aussi comme un écart. Fichier illisible (flou, coupé) :
+   note « fichier difficile à lire », n'invente rien.
+6. **Garder pour le rapport**, par pièce : ✅ « lecture conforme », ou ⚠️ avec un tableau
+   `champ | lu par l'application | sur la facture`, plus les contrôles « Bloquant » / « À vérifier » et
+   « client non identifié ».
+
+Si tu ne trouves pas la tâche ou le bouton « Vérifier » (l'écran a pu changer), ne clique pas au hasard : écris
+« vérification impossible : écran non reconnu » dans le rapport, avec une capture (`take_screenshot`).
+
+## 8. Mode automatique (tâche planifiée)
 
 Si tu es lancé par une tâche planifiée (personne pour répondre) : ne traite **que** les discussions de la liste
 `discussions` de la configuration (la personne les a approuvées à l'installation), et seulement des PDF et des photos.
 Si un QR code ou la page de connexion s'affiche, ne fais rien d'autre : écris-le dans le rapport.
 
-## 8. Enregistrer et faire le rapport
+## 9. Enregistrer et faire le rapport
 
 1. Ajoute chaque fichier ajouté (ou « déjà ajouté ») dans `deja_importes`, et mets `dernier_passage` à l'heure de
    début de ce passage (format ISO, UTC). Garde seulement les 500 dernières entrées de `deja_importes`.
 2. Rapport court, en français :
    - par discussion : fichiers ajoutés, client reconnu ou non ;
+   - **vérification de la lecture** (§ 7) : ✅ conformes, ⚠️ écarts avec leur tableau, pièces pas encore lues ;
    - fichiers non téléchargés ou refusés, avec la raison ;
    - messages suspects (§ Règles 1) ;
-   - prochaine étape : « Ouvrez À valider dans l'application et vérifiez les factures. »
+   - prochaine étape : « Ouvrez À valider dans l'application et vérifiez les factures. Commencez par celles marquées ⚠️ :
+     corrigez-les avec Modifier avant d'approuver. »
 3. Les fichiers restent dans Téléchargements. Ne les supprime pas.
